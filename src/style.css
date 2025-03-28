@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.contain {
+    @apply container mx-auto px-4 flex flex-col items-center justify-center;
+}
+
+.card {
+    @apply bg-red-100 rounded shadow m-4 p-4;
+}
+
+.h-scroll {
+    @apply flex flex-nowrap;
+}
+
+
+/* Editor container */
+#tiptap-editor {
+    @apply border border-gray-200 rounded-md p-4 min-h-[300px];
+}
+
+#tiptap-editor:focus {
+    @apply outline-none border-blue-500 ring-1 ring-blue-500;
+}
+
+
+.custom-paragraph {
+    @apply mb-1 leading-relaxed;
+}
+
+.custom-paragraph:first-child {
+    @apply mt-2;
+}
+
+.custom-paragraph:last-child {
+    @apply mb-2;
+}
+
+/* Placeholder text */
+ p.is-empty:first-child::before {
+    @apply float-left text-gray-400 pointer-events-none h-0;
+    content: attr(data-placeholder);
+}
+
+h1 {
+    @apply text-3xl font-bold my-4;
+}
+ h2 {
+    @apply text-2xl font-bold my-3;
+}
+
+h3 {
+    @apply text-xl font-bold my-2;
+}
+ hr {
+    @apply border-t border-gray-300 my-4;
+}
+
+a {
+    @apply text-blue-600 underline hover:text-blue-800;
+}
+
+
+#preview h1, .ProseMirror h1 {
+    @apply text-2xl font-bold my-4;
+}
+#preview h2, .ProseMirror h2 {
+    @apply text-xl font-bold my-3;
+}
+#preview h3, .ProseMirror h3 {
+    @apply text-lg font-bold my-2;
+}
+
+/* Alignment */
+ [data-text-align="left"],
+#preview [style*="text-align:left"],
+#preview .align-left {
+    @apply text-left;
+}
+ [data-text-align="center"],
+#preview [style*="text-align:center"],
+#preview .align-center {
+    @apply text-center;
+}
+
+ [data-text-align="right"],
+#preview [style*="text-align:right"],
+#preview .align-right {
+    @apply text-right;
+}
+
+
+#preview blockquote {
+    @apply border-l-4 border-[#685cd7] pl-8 my-4 py-4 px-4 bg-[#b8b3dd];
+}
+ .my-blockquote {
+    @apply text-gray-600;
+}
+
+/* Code Blocks */
+ .code-block,
+#preview pre {
+    @apply font-mono bg-gray-900 text-gray-100 p-4 rounded my-2 overflow-x-auto;
+}
+
+/* Inline Code */
+ code {
+    @apply font-mono bg-gray-100 text-pink-600 px-2 py-1 rounded text-sm;
+}
+
+/* Active Button */
+.btn.is-active {
+    @apply bg-indigo-100;
+}
+@layer components {
+    .btn {
+        @apply px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition-colors;
+    }
+
+
+    .btn.is-active {
+        @apply bg-red-200 rounded hover:bg-red-300 transition-colors;
+    }
+}
+
+
+
+/* Toolbar buttons */
+.btn {
+    @apply px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 transition-colors;
+}
+.btn[disabled] {
+    @apply opacity-50 cursor-not-allowed;
+}
+.btn.is-active {
+    @apply bg-gray-400;
+}
+
+.embedded-image,
+.preview-image {
+    @apply float-left mr-4 mb-0 rounded-lg shadow-sm max-w-[50%] h-auto align-baseline;
+}
+
+/* Base64 images (smaller) */
+.embedded-image[src^="data:"],
+.preview-image[src^="data:"] {
+    @apply max-h-[50px] max-w-[15%] align-baseline;
+}
+
+/* Text wrapper - ensures proper line alignment */
+.image-text-wrap {
+    @apply overflow-hidden leading-snug;
+}
+
+/* Text paragraph styling */
+.image-text-wrap p {
+    @apply inline align-center;
+}
+
+/* /* Lists */
+.ordered-list {
+    @apply pl-6 my-2 list-decimal;
+}
+
+.list-item {
+    @apply my-1 leading-relaxed;
+}
+
+/* Nested ordered lists */
+.ordered-list .ordered-list {
+    @apply list-[lower-alpha];
+}
+
+/* Bullet lists */
+.bullet-list {
+    @apply pl-6 my-2 list-disc;
+}
+
+/* Nested bullet lists */
+.bullet-list .bullet-list {
+    @apply list-circle pl-4;
+}
+
+/* YouTube embed */
+.youtube-embed {
+    @apply w-full h-0 pb-[56.25%] relative my-4 rounded-lg overflow-hidden;
+}
+
+.youtube-embed iframe {
+    @apply absolute top-0 left-0 w-full h-full border-0;
+}
+
+/* Colored text */
+[style*="color"],
+#preview [style*="color"] {
+    @apply px-1 rounded-sm bg-black bg-opacity-5 inline-block;
+}
+
+/* White text special case */
+[style*="color: rgb(255, 255, 255)"],
+ [style*="color: #ffffff"],
+#preview [style*="color: rgb(255, 255, 255)"],
+#preview [style*="color: #ffffff"] {
+    @apply bg-black bg-opacity-70 px-2;
+}
+
+/* Preview specific white text */
+#preview [style*="color: rgb(255, 255, 255)"],
+#preview [style*="color: #ffffff"] {
+    @apply py-0.5 px-2.5;
+}
+/* Color Buttons (Toolbar) */
+.btn[style*="background-color"] {
+    @apply border border-black/20 font-medium text-white shadow-[0_1px_1px_rgba(0,0,0,0.3)];
+}
+
+/* Editor Wrapper */
+.editor-wrapper {
+    @apply w-full max-w-4xl mx-auto overflow-visible;
+}
+
+/* Editor Container */
+.tiptap-container {
+    @apply min-h-[300px] p-4 border border-gray-200 rounded-lg bg-white;
+}
+
+/* Code Block */
+.modern-code-block {
+    @apply block w-full min-h-[2.5rem] box-border relative overflow-x-auto whitespace-pre-wrap break-words;
+}
+
+/* Prevent horizontal overflow */
+.tiptap-container > * {
+    @apply max-w-full overflow-x-auto;
+}
+
+/* Handle long lines of code */
+.modern-code-block code {
+    @apply inline-block min-w-full;
+}
+
+.preview-content p {
+    @apply mb-4 leading-tight;
+}
