@@ -30,3 +30,4 @@ src/KEYS.js
 .firebaserc
 
 src/firebaseConfig.json
+"firebase.json" 
