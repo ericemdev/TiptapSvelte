@@ -1,5 +1,5 @@
 <script>
-  import Tiptap from "./components/Tiptap.svelte";
+    import Tiptap from "./components/Tiptap.svelte";
   import './style.css';
   let content = '';
 </script>
@@ -17,11 +17,9 @@
 
   <section class="flex flex-row items-center flex-1 w-full bg-background">
 
-    <div class="bg- w-1/2 h-full">
+    <div class="w-1/2 h-full">
         <Tiptap bind:content />
     </div>
-
-
 
     <div id="preview" class="p-4 bg-background w-1/2 h-full font-nunito">{@html content}</div>
 
