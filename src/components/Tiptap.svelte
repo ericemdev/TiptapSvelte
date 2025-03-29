@@ -21,7 +21,6 @@
     import {BulletList} from "@tiptap/extension-bullet-list";
     import {Youtube} from "@tiptap/extension-youtube";
     import CodeBlock from '@tiptap/extension-code-block';
-    import { ClipboardCopy } from 'lucide-svelte';
     import Code from '@tiptap/extension-code';
     import Image from '@tiptap/extension-image';
 
@@ -152,17 +151,6 @@
         onUpdate(content);
     };
 
-    const copyCode = () => {
-        const codeBlocks = document.querySelectorAll('.modern-code-block');
-        if (codeBlocks.length > 0) {
-            const latestCodeBlock = codeBlocks[codeBlocks.length - 1];
-            navigator.clipboard.writeText(latestCodeBlock.textContent)
-                .then(() => {
-                    // You could add a toast notification here
-                    console.log('Code copied to clipboard');
-                });
-        }
-    };
 
     const handleImageUpload = (event) => {
         const file = event.target.files[0];
@@ -201,17 +189,8 @@
         tiptapEditor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
     };
 
-    const setHeading = (level) => {
-        tiptapEditor.chain().focus().toggleHeading({ level }).run();
-    };
-
-
-
-    const addHorizontalRule = () => {
-        tiptapEditor.chain().focus().setHorizontalRule().run();
-    };
-
-
+    const setHeading = (level) => {tiptapEditor.chain().focus().toggleHeading({ level }).run();};
+    const addHorizontalRule = () => {tiptapEditor.chain().focus().setHorizontalRule().run();};
     const toggleBold = () => tiptapEditor.chain().focus().toggleBold().run();
     const toggleItalic = () => tiptapEditor.chain().focus().toggleItalic().run();
     const toggleUnderline = () => tiptapEditor.chain().focus().toggleUnderline().run();
@@ -297,11 +276,7 @@
                     </svg>
                 </button>
 
-                <button
-                        on:click={toggleBlockquote}
-                        class="btn"
-                        title="Blockquote"
-                >
+                <button on:click={toggleBlockquote} class="btn" title="Blockquote">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                     </svg>
@@ -318,12 +293,7 @@
                     </svg>
                 </label>
 
-                <button
-                        on:click={toggleOrderedList}
-                        class="btn"
-                        class:is-active={isOrderedListActive()}
-                        title="Ordered List (Ctrl+Shift+7)"
-                >
+                <button on:click={toggleOrderedList} class="btn" class:is-active={isOrderedListActive()} title="Ordered List (Ctrl+Shift+7)">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="10" y1="6" x2="21" y2="6"/><line x1="10" y1="12" x2="21" y2="12"/>
                         <line x1="10" y1="18" x2="21" y2="18"/>
@@ -338,28 +308,13 @@
                     </svg>
                 </button>
 
-                    <button on:click={addYoutubeVideo} class="btn" title="Insert YouTube Video">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="red" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
-                            <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
-                        </svg>
-                    </button>
-
                 {#each colors as color}
-                    <button
-                            on:click={() => tiptapEditor?.chain().focus().setColor(color.value).run()}
-                            class="btn px-2 py-1 text-xs"
-                            style="background-color: {color.value}; color: white;"
-                            title={`Set ${color.name} text`}
-                    >
+                    <button on:click={() => tiptapEditor?.chain().focus().setColor(color.value).run()} class="btn px-2 py-1 text-xs" style="background-color: {color.value}; color: white;" title={`Set ${color.name} text`}>
                         {color.name}
                     </button>
                 {/each}
 
-                <button
-                        on:click={() => tiptapEditor.chain().focus().toggleCode().run()}
-                        class:active={tiptapEditor?.isActive('code')}
-                >
+                <button on:click={() => tiptapEditor.chain().focus().toggleCode().run()} class:active={tiptapEditor?.isActive('code')}>
                     {`</>`}
                 </button>
                 <button on:click={undo} class="btn" title="Undo (Ctrl+Z)">
@@ -371,8 +326,6 @@
                 </button>
 
             </div>
-
-
 
 
             <div id="tiptap-editor" class="resize-y min-h-[300px] p-4 focus:outline-none" data-placeholder="Start typing your paragraph..."></div>
