@@ -134,7 +134,7 @@
             onUpdate: ({ editor }) => {content = editor.getHTML();}
         });
     });
-    
+  
     const copyCode = () => { // TODO function not implemented
         const codeBlocks = document.querySelectorAll('.modern-code-block');
         if (codeBlocks.length > 0) {
@@ -173,6 +173,7 @@
         }
         tiptapEditor.chain().focus().extendMarkRange('link').setLink({ href: url }).run();
     };
+  
     const setHeading = (level) => tiptapEditor.chain().focus().toggleHeading({ level }).run();
     const addHorizontalRule = () => tiptapEditor.chain().focus().setHorizontalRule().run();
     const toggleBold = () => tiptapEditor.chain().focus().toggleBold().run();
